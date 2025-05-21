@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  blog-rag:
+    extra_hosts:
+        - "host.docker.internal:host-gateway"
+    build: .
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./posts:/app/posts
+      - ./chroma_store:/app/chroma_store
+      - ./templates:/app/templates
+    environment:
+      - OLLAMA_API_URL=http://host.docker.internal:11434
+    restart: unless-stopped

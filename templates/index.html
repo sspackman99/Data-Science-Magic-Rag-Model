@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Blog RAG API</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            max-width: 800px; 
+            margin: 0 auto; 
+            padding: 20px; 
+            line-height: 1.6;
+        }
+        h1 { color: #333; }
+        h2 { color: #555; margin-top: 30px; }
+        pre { 
+            background-color: #f5f5f5; 
+            padding: 15px; 
+            border-radius: 5px; 
+            overflow-x: auto;
+        }
+        .endpoint { 
+            background-color: #f9f9f9; 
+            padding: 15px; 
+            border-left: 4px solid #007bff; 
+            margin-bottom: 20px;
+        }
+        .method {
+            font-weight: bold;
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 3px;
+            margin-right: 10px;
+        }
+        .get { background-color: #61affe; color: white; }
+        .post { background-color: #49cc90; color: white; }
+    </style>
+</head>
+<body>
+    <h1>Blog RAG API</h1>
+    <p>This is the API for the RAG model. Use the endpoints below to interact with it.</p>
+    
+    <h2>Endpoints</h2>
+    
+    <div class="endpoint">
+        <span class="method get">GET</span> <code>/api/health</code>
+        <p>Health check endpoint to verify the API is working</p>
+        <p>Example: <a href="/api/health">/api/health</a></p>
+    </div>
+    
+    <div class="endpoint">
+        <span class="method post">POST</span> <code>/api/chat</code>
+        <p>Chat with the RAG model using chat format</p>
+        <pre>
+{
+  "messages": [
+    {"role": "system", "content": "Your system prompt here"},
+    {"role": "user", "content": "User message here"}
+  ],
+  "model": "llama3.2:3b"
+}
+        </pre>
+    </div>
+    
+    <h2>Example Usage</h2>
+    <pre>
+fetch('/api/chat', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+        messages: [
+            {"role": "system", "content": "You are a helpful assistant."},
+            {"role": "user", "content": "Tell me about geocaching."}
+        ],
+        model: "llama3.2:3b"
+    }),
+})
+.then(response => response.json())
+.then(data => console.log(data));
+    </pre>
+</body>
+</html>

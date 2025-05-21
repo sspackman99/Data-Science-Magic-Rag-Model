@@ -1,0 +1,7 @@
+flask
+requests
+torch
+sentence-transformers
+chromadb
+transformers
+gunicorn
